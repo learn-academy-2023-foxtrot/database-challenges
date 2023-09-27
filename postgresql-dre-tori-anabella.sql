@@ -20,12 +20,39 @@ SELECT name, continent, lifeexpectancy, population
 FROM african_smaller_populations
 WHERE continent LIKE 'Africa'
 -- Which countries are something like a republic? (HINT: Are there 122 or 143?)
-
+SELECT governmentform
+FROM country
+WHERE governmentform LIKE 'Republic'
 -- Which countries are some kind of republic and achieved independence after 1945? (HINT: 92 entries)
+SELECT governmentform, indepyear
+FROM country
+WHERE governmentform LIKE '%epublic' AND indepyear > 1945
+
+
 -- Which countries achieved independence after 1945 and are not some kind of republic? (HINT: 27 entries)
+SELECT name, governmentform, indepyear
+FROM country
+WHERE governmentform NOT LIKE '%epublic' AND indepyear > 1945
+
+
 -- Which fifteen countries have the lowest life expectancy? (HINT: starts with Zambia, ends with Sierra Leonne)
+SELECT name, lifeexpectancy 
+FROM country
+ORDER BY lifeexpectancy 
+LIMIT 15
+
+
 -- Which fifteen countries have the highest life expectancy? (HINT: starts with Andorra, ends with Spain)
+
+SELECT name, lifeexpectancy 
+FROM country
+WHERE lifeexpectancy IS NOT NULL 
+ORDER BY lifeexpectancy DESC
+LIMIT 15
+
 -- Which five countries have the lowest population density (density = population / surfacearea)? (HINT: starts with Greenland)
+
+
 -- Which countries have the highest population density?(HINT: starts with Macao)
 -- Which is the smallest country by area? (HINT: .4)
 -- Which is the smallest country by population? (HINT: 50)?
