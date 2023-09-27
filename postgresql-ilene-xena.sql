@@ -37,9 +37,29 @@ WHERE governmentform NOT LIKE '%Republic' AND indepyear > 1945
 
 -- Which fifteen countries have the lowest life expectancy? (HINT: starts with Zambia, ends with Sierra Leonne)
 
+SELECT name, lifeexpectancy
+FROM country
+WHERE lifeexpectancy != 0
+ORDER BY lifeexpectancy 
+LIMIT 15
 
 -- Which fifteen countries have the highest life expectancy? (HINT: starts with Andorra, ends with Spain)
+
+SELECT name, lifeexpectancy
+FROM country
+WHERE lifeexpectancy != 0
+ORDER BY lifeexpectancy DESC
+LIMIT 15
+
 -- Which five countries have the lowest population density (density = population / surfacearea)? (HINT: starts with Greenland)
+
+SELECT name, population,
+population/surfacearea AS density
+FROM country 
+WHERE population != 0
+ORDER BY density 
+LIMIT 5
+
 -- Which countries have the highest population density?(HINT: starts with Macao)
 -- Which is the smallest country by area? (HINT: .4)
 -- Which is the smallest country by population? (HINT: 50)?
