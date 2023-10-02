@@ -79,15 +79,6 @@ it 'password has to be unique and six integers long' do
   user = Account.create username: 'blabla', password: 5656656, email: 'johnjohn@nobody.com'
   expect(user.errors[:password]).to be_empty
 end
-# it 'validate the presence of all fields' do
-#   address = Account.create street_name: 'nowhere st', street_number: 8367,  city: 'San Diego', state: 'CA', zip:94787
-#   expect(user.errors[:street_name]).to be_empty
-#   expect(user.errors[:street_number]).to be_empty
-#   expect(user.errors[:city]).to be_empty
-#   expect(user.errors[:state]).to be_empty
-#   expect(user.errors[:zip]).to be_empty
-# end
-
 end
 
 require 'rails_helper'
@@ -105,4 +96,20 @@ end
 end
 
 
+
+
+
+rails generate model Adress street_number:integer street_name:string city:string state:string zip:integer
+
+rails g migration AddForeignKey
+
+
+db/migrate/20231002232451_add_foreign_key.rb
+class AddForeignKey < ActiveRecord::Migration[7.0]
+  def change
+    add_column :addresses, :account_id, :integer
+    add_foreign_key :addresses, :accounts, column: :account_id 
+
+  end
+end
 
